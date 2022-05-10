@@ -3,7 +3,8 @@ import {StyleSheet, Text, View} from 'react-native';
 import { useSelector } from 'react-redux';
 
 const HomeScreen: React.FC = () => {
-  const state = useSelector(state => state.weatcherReducer);
+  const state = useSelector(state => state.wetcher);
+  console.log(state);
 
   return (
     <View style={styles.container}>
