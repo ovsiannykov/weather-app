@@ -6,7 +6,7 @@ import MainStack from './MainStack';
 const Root: React.FC = () => {
   return (
     <NavigationContainer>
-      <StatusBar backgroundColor={'#ffffff'} barStyle={'dark-content'} />
+      <StatusBar barStyle={'light-content'} />
       <MainStack />
     </NavigationContainer>
   );

@@ -19,6 +19,7 @@ export const fetchData = async () => {
       const data = res.data;
       return data;
     } else {
+      console.log(res);
       return null;
     }
   } catch (error) {
