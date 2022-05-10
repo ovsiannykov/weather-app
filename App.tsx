@@ -16,14 +16,6 @@ import store from './src/store';
 
 const App: React.FC = () => {
   return (
-    // <SafeAreaView>
-    //   <ScrollView>
-    //     <View style={styles.container}>
-    //       <Text>Hello</Text>
-    //       <Root />
-    //     </View>
-    //   </ScrollView>
-    // </SafeAreaView>
     <Provider store={store}>
       <Root />
     </Provider>

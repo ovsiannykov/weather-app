@@ -1,7 +1,7 @@
 import {weatcherTypes} from './weatcher-types';
 
 const initialState = {
-  wetcher: null,
+  wetcher: [],
 };
 
 export const weatcherReducer = (state = initialState, action) => {
