@@ -9,8 +9,10 @@
  */
 
 import React from 'react';
+import { Provider } from 'react-redux';
+
 import Root from './src/navigation/Root';
-import HomeScreen from './src/screens/HomeScreen';
+import store from './src/store';
 
 const App: React.FC = () => {
   return (
@@ -22,7 +24,9 @@ const App: React.FC = () => {
     //     </View>
     //   </ScrollView>
     // </SafeAreaView>
-    <Root />
+    <Provider store={store}>
+      <Root />
+    </Provider>
   );
 };
 
