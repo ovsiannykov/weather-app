@@ -5,8 +5,9 @@ import {fetchData} from '../../api';
 import {weatcherTypes} from './weatcher-types';
 
 function* workerSaga() {
-  const data = yield call(fetchData);
-  yield put(setWeatcher(data));
+  //const data = yield call(fetchData);
+  //yield put(setWeatcher(data));
+  console.log('saga');
 }
 
 function* watcherSaga() {

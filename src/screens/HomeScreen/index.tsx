@@ -10,6 +10,8 @@ const HomeScreen: React.FC = () => {
   const [fetching, setFteching] = useState(true);
   const data = useSelector(state => state.wetcher);
 
+  //console.log(data);
+
   const dispatch = useDispatch();
 
   const fetchingData = async () => {
@@ -33,7 +35,7 @@ const HomeScreen: React.FC = () => {
         <SelectCity
           city={data?.city?.name}
           country={data?.city?.country}
-          //temp={data ? (data.list[0].main.temp - 273,15) : null}
+          temp={data && data.list ? (data.list[0].main.temp - 273,15) : null}
           icon={data && data.list ? data.list[0].weather[0].icon : null}
         />
       </View>
