@@ -6,7 +6,7 @@ const deafultImage = require('../../assets/question-mark.png');
 
 const CalendarDate = (props: any) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={props.onPress}>
       <LinearGradient
         colors={['#9566a9', '#395F99']}
         style={styles.calendarItem}>

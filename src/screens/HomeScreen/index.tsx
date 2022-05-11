@@ -6,9 +6,11 @@ import {
   FlatList,
   Text,
   ScrollView,
+  RefreshControl,
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
+import {useNavigation} from '@react-navigation/native';
 
 import SelectCity from '../../components/SelectCity';
 import {setDataFetching} from '../../store/weatcher/weatcher-actions';
@@ -16,12 +18,11 @@ import {defaultData} from '../../constants/data';
 import CalendarDate from '../../components/CalendarDate';
 
 const HomeScreen: React.FC = () => {
-  const [fetching, setFteching] = useState(true);
+  const [fetching, setFteching] = useState(false);
   //const data = useSelector(state => state.wetcher);
   const data = defaultData;
 
-  //console.log(data);
-
+  const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const fetchingData = async () => {
@@ -40,12 +41,25 @@ const HomeScreen: React.FC = () => {
       date={item.dt_txt}
       temp={item.main.temp - 273.15}
       desc={item.weather[0].description}
+      onPress={() =>
+        navigation.navigate('Detail', {
+          item: item,
+          date: item.dt_txt,
+          data: data.list,
+          city: data.city,
+        })
+      }
     />
   );
 
   return (
     <LinearGradient colors={['#395F99', '#28436B']} style={styles.container}>
-      <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.scroll}
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl refreshing={fetching} onRefresh={fetchingData} />
+        }>
         <View style={styles.wrapper}>
           {fetching ? (
             <View style={styles.loadingBox}>
@@ -63,7 +77,7 @@ const HomeScreen: React.FC = () => {
           />
         </View>
         <View style={styles.listBox}>
-          <Text style={styles.weekTitle}>Next{'  '}Week</Text>
+          <Text style={styles.weekTitle}>This{'  '}Week</Text>
           <FlatList
             horizontal
             showsHorizontalScrollIndicator={false}
@@ -95,14 +109,13 @@ const styles = StyleSheet.create({
   },
   listBox: {
     width: '100%',
-    paddingLeft: 10,
-    marginTop: 40,
+    marginTop: 30,
   },
   weekTitle: {
     color: '#E9F4ED',
     fontSize: 42,
     fontWeight: '800',
-    marginBottom: 40,
+    marginBottom: 35,
     marginLeft: 20,
   },
   scroll: {
