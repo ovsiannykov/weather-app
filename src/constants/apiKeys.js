@@ -1,1 +1,1 @@
-export const opendataKey = '9ec24edd29mshac9a22ec8bcae99p17044fjsnc5a738b2af1d';
+export const opendataKey = '4abf4572e3mshe0865d6efa8bf40p135247jsncfdb5174fb8d';

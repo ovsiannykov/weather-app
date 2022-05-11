@@ -1,16 +1,18 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
-const deafultImage = require('../../assets/question-mark.png')
+const deafultImage = require('../../assets/question-mark.png');
 
-const SelectCity: React.FC = (props) => {
+const SelectCity: React.FC = (props: any) => {
   return (
     <View style={styles.container}>
       <View style={{...styles.infoBox, paddingLeft: 20}}>
-        <Text style={styles.temp}>{props.temp ?? 'NoN'}°</Text>
-        <Text style={styles.city}>
+        <Text style={styles.todayText}>Today</Text>
+         <Text style={styles.city}>
           {props.city ?? 'City'}, {props.country ?? 'World'}
         </Text>
+        <Text style={styles.temp}>{Math.round(props.temp) ?? 'NoN'}°</Text>
+        <Text style={styles.desc}>{props.desc ?? 'description'}</Text>
       </View>
       <View style={{...styles.infoBox, alignItems: 'flex-end'}}>
         <Image
@@ -30,8 +32,8 @@ const styles = StyleSheet.create({
     width: '98%',
     padding: 15,
     borderRadius: 35,
-    backgroundColor: '#4879C2',
-    minHeight: 120,
+    backgroundColor: '#274169',
+    minHeight: 180,
     shadowColor: '#000000',
     shadowOffset: {
       width: 0,
@@ -46,7 +48,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   temp: {
-    fontSize: 34,
+    fontSize: 78,
     color: '#E9F4ED',
     fontWeight: '800',
   },
@@ -54,15 +56,23 @@ const styles = StyleSheet.create({
     width: '50%',
   },
   city: {
-    marginTop: 5,
-    fontSize: 16,
+    fontSize: 12,
     color: '#E9F4ED',
-    fontWeight: '600',
+    fontWeight: '400',
   },
   icon: {
-    width: 70,
-    height: 70,
-    marginRight: 25,
+    width: 140,
+    height: 140,
+  },
+  todayText: {
+    color: '#E9F4ED',
+    fontSize: 14,
+    fontWeight: '800',
+  },
+  desc: {
+    fontSize: 12,
+    color: '#E9F4ED',
+    fontWeight: '600',
   },
 });
 
