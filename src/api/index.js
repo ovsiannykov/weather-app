@@ -1,5 +1,6 @@
 import {opendataKey} from '../constants/apiKeys';
 import axios from 'axios';
+import {showMessage} from 'react-native-flash-message';
 
 export const fetchData = async () => {
   try {
@@ -15,14 +16,22 @@ export const fetchData = async () => {
 
     let res = await axios.request(options);
 
+    console.log(res);
+
     if (res.status === 200) {
       const data = res.data;
       return data;
     } else {
-      console.log(res);
-      return null;
+      showMessage({
+        message: 'Щось пішло не так. Спробуйте трохи пізніше 🤷‍♀️',
+        type: 'danger',
+      });
     }
   } catch (error) {
     console.log(error);
+    showMessage({
+      message: `Opps.. ${error.message}`,
+      type: 'danger',
+    });
   }
 };

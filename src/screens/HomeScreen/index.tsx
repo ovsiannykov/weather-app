@@ -1,23 +1,40 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {useSelector} from 'react-redux';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, View, ActivityIndicator} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 
 import SelectCity from '../../components/SelectCity';
+import { setDataFetching } from '../../store/weatcher/weatcher-actions';
 
 const HomeScreen: React.FC = () => {
-  const data: object = useSelector(state => state.wetcher._W);
+  const [fetching, setFteching] = useState(true);
+  const data = useSelector(state => state.wetcher);
 
-  console.log(data);
+  const dispatch = useDispatch();
+
+  const fetchingData = async () => {
+    setFteching(true);
+    await dispatch(setDataFetching());
+    setFteching(false);
+  };
+
+  useEffect(() => {
+    fetchingData();
+  }, []);
 
   return (
     <LinearGradient colors={['#395F99', '#28436B']} style={styles.container}>
       <View style={styles.wrapper}>
+        {fetching ? (
+          <View style={styles.loadingBox}>
+            <ActivityIndicator size="large" color="white" />
+          </View>
+        ) : null}
         <SelectCity
-          city={data.city.name}
-          country={data.city.country}
-          temp={(data.list[0].main.temp - 273, 15)}
-          icon={data.list[0].weather[0].icon}
+          city={data?.city?.name}
+          country={data?.city?.country}
+          //temp={data ? (data.list[0].main.temp - 273,15) : null}
+          icon={data && data.list ? data.list[0].weather[0].icon : null}
         />
       </View>
     </LinearGradient>
@@ -33,6 +50,11 @@ const styles = StyleSheet.create({
   wrapper: {
     width: '100%',
     paddingHorizontal: 10,
+  },
+  loadingBox: {
+    height: '95%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
