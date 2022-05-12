@@ -7,8 +7,7 @@ import TimeItem from '../../components/TimeItem';
 import {defaultData} from '../../constants/data';
 
 const TimeListScreen: React.FC = () => {
-  //const data = useSelector(state => state.wetcher);
-  const data = defaultData;
+  const data = useSelector(state => state.wetcher);
 
   const renderItem = ({item}: any) => (
     <TimeItem

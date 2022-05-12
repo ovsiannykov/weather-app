@@ -14,12 +14,11 @@ import {useNavigation} from '@react-navigation/native';
 
 import SelectCity from '../../components/SelectCity';
 import {setDataFetching} from '../../store/weatcher/weatcher-actions';
-import {defaultData} from '../../constants/data';
 import CalendarDate from '../../components/CalendarDate';
 
 const HomeScreen: React.FC = () => {
   const [fetching, setFteching] = useState(false);
-  //const data = useSelector(state => state.wetcher);
+  const data = useSelector(state => state.wetcher);
 
   /*
   ----------------------------------------
@@ -30,8 +29,8 @@ const HomeScreen: React.FC = () => {
   2. const data = defaultData;
 
   Thanks!
+  P.S.: The same on the timeList Screen
   */
-  const data = defaultData;
 
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -91,15 +90,21 @@ const HomeScreen: React.FC = () => {
         </View>
         <View style={styles.listBox}>
           <Text style={styles.weekTitle}>This{'  '}Week</Text>
-          <FlatList
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            data={data.list.filter(
-              item => item.dt_txt.split(' ')[1] === '15:00:00',
-            )}
-            keyExtractor={item => item.dt}
-            renderItem={renderItem}
-          />
+          {data.list ? (
+            <FlatList
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              data={
+                data
+                  ? data.list.filter(
+                      item => item.dt_txt.split(' ')[1] === '15:00:00',
+                    )
+                  : null
+              }
+              keyExtractor={item => item.dt}
+              renderItem={renderItem}
+            />
+          ) : null}
         </View>
       </ScrollView>
     </LinearGradient>

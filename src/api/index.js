@@ -16,7 +16,7 @@ export const fetchData = async () => {
 
     let res = await axios.request(options);
 
-    console.log(res);
+    //console.log(res);
 
     if (res.status === 200) {
       const data = res.data;
