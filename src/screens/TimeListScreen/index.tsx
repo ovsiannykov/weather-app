@@ -25,7 +25,6 @@ const TimeListScreen: React.FC = () => {
         <Text style={styles.defaultText}>Oops... Failed to load data</Text>
       ) : (
         <FlatList
-          showsVerticalScrollIndicator={false}
           data={data.list}
           keyExtractor={item => item.dt}
           renderItem={renderItem}

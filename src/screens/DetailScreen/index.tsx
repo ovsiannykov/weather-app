@@ -20,8 +20,6 @@ const DetailScreen: React.FC = () => {
     item => item.dt_txt.split(' ')[0] === thisDate,
   );
 
-  console.log(data);
-
   const renderItem = ({item}: any) => (
     <TimeItem
       icon={item.weather[0].icon}
