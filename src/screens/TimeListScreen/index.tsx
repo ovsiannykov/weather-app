@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, FlatList} from 'react-native';
+import {StyleSheet, FlatList, Text} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {useSelector} from 'react-redux';
 
@@ -21,12 +21,16 @@ const TimeListScreen: React.FC = () => {
 
   return (
     <LinearGradient colors={['#395F99', '#28436B']} style={styles.container}>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={data.list}
-        keyExtractor={item => item.dt}
-        renderItem={renderItem}
-      />
+      {!data || data.length == 0 ? (
+        <Text style={styles.defaultText}>Oops... Failed to load data</Text>
+      ) : (
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={data.list}
+          keyExtractor={item => item.dt}
+          renderItem={renderItem}
+        />
+      )}
     </LinearGradient>
   );
 };
@@ -36,6 +40,12 @@ const styles = StyleSheet.create({
     minHeight: '100%',
     paddingHorizontal: 10,
     paddingTop: 60,
+  },
+  defaultText: {
+    textAlign: 'center',
+    fontSize: 22,
+    color: '#E9F4ED',
+    fontWeight: '700',
   },
 });
 
