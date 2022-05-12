@@ -7,7 +7,7 @@ const TimeItem: React.FC = (props: any) => {
   return (
     <View style={styles.container}>
       <View style={{...styles.infoBox, paddingLeft: 20}}>
-        <Text style={styles.time}>{props.time.split(" ")[1]}</Text>
+        <Text style={styles.time}>{props.time}</Text>
         <Text style={styles.temp}>{Math.round(props.temp) ?? 'NoN'}°</Text>
         <Text style={styles.desc}>{props.desc ?? 'description'}</Text>
       </View>
@@ -46,12 +46,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   temp: {
-    fontSize: 52,
+    fontSize: 66,
     color: '#E9F4ED',
     fontWeight: '800',
+    marginLeft: -15,
   },
   infoBox: {
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
   city: {
     fontSize: 12,
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
   },
   time: {
     color: '#E9F4ED',
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: '400',
     marginLeft: -10,
   },
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#E9F4ED',
     fontWeight: '400',
-    marginLeft: -10,
+    //marginLeft: -10,
   },
 });
 

@@ -51,6 +51,14 @@ const styles = StyleSheet.create({
     fontSize: 78,
     color: '#E9F4ED',
     fontWeight: '800',
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 0.05,
+    elevation: 1,
   },
   infoBox: {
     width: '50%',
